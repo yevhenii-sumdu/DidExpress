@@ -1,12 +1,31 @@
 ﻿<Window x:Class="DidExpress.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Did Express" Height="450" Width="800">
+    
+    <Grid Background="#2E2E2E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <Menu Name="MainMenu" Grid.Row="0" Foreground="#BDBDBD" FontSize="16">
+            <MenuItem Name="AuthMenuItem" Header="Авторизація" Height="30" Click="AuthMenuItem_Click"/>
+            <MenuItem Name="UserInfoMenuItem" Header="Користувач" Height="30" Visibility="Collapsed" Click="UserInfoMenuItem_Click"/>
+            <MenuItem Name="EditMenuItem" Header="Редагування" Height="30" Visibility="Collapsed" Click="EditMenuItem_Click"/>
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox Width="300" BorderBrush="#BDBDBD" Foreground="#BDBDBD" FontSize="30" materialDesign:HintAssist.Hint="Введіть вік дитини"/>
+                <Button Content="Пошук" Margin="20,0,0,0" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
+                        FontSize="22" Height="45" Width="130" FontWeight="Normal"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
