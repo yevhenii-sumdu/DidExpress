@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress.View.Windows"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="600" Width="800"
-        MinHeight="400" MinWidth="600">
+        Title="AuthWindow" Height="600" Width="600"
+        MinHeight="400" MinWidth="400">
     
     <Grid Background="#2E2E2E">
         <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
         <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
                    Foreground="#BDBDBD" FontSize="35" Text="Did Express"/>
 
-        <Border Grid.Row="1" Width="500" BorderBrush="#BDBDBD" BorderThickness="2" CornerRadius="8">
+        <Border Grid.Row="1" Margin="50,0,50,0" BorderBrush="#BDBDBD" BorderThickness="2" CornerRadius="8">
             <Grid Margin="40,0,40,0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>

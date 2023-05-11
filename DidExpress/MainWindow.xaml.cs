@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,10 +47,40 @@ namespace DidExpress {
         }
 
         private void UserInfoMenuItem_Click(object sender, RoutedEventArgs e) {
-
+            MessageBox.Show($"Користувач: {CurrentUser.UserName}\nЛогін: {CurrentUser.UserLogin}", "Інформація про користувача", MessageBoxButton.OK, MessageBoxImage.Information); ;
         }
 
         private void EditMenuItem_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e) {
+            var regex = new Regex("[0-9]+");
+        
+            if (!regex.IsMatch(AgeTextBox.Text)) {
+                MessageBox.Show("Невірно введений вік!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else {
+                SearchResultsTextBlock.Visibility = Visibility.Visible;
+
+                Save.Visibility = Visibility.Visible;
+
+                SearchRow.Height = new GridLength(120);
+
+                SearchResultsRow.Height = new GridLength(1, GridUnitType.Star);
+
+                SearchResults.Children.Clear();
+
+                for (int i = 1; i <= Convert.ToInt32(AgeTextBox.Text); i++) {
+                    var textBlock = new TextBlock() { Style = (Style)FindResource("SearchResultTextBlock") };
+                    textBlock.Text = "Text " + i.ToString();
+
+                    SearchResults.Children.Add(textBlock);
+                }
+            }
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e) {
 
         }
     }

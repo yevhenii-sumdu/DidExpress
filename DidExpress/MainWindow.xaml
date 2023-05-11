@@ -6,12 +6,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress"
         mc:Ignorable="d"
-        Title="Did Express" Height="450" Width="800">
+        Title="Did Express" Height="450" Width="800"
+        MinWidth="800" MinHeight="400">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock" x:Key="SearchResultTextBlock">
+            <Setter Property="Foreground" Value="#BDBDBD"/>
+            <Setter Property="Margin" Value="10,5,10,5"/>
+            <Setter Property="FontSize" Value="25"/>
+        </Style>
+    </Window.Resources>
     
     <Grid Background="#2E2E2E">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Name="SearchRow"/>
+            <RowDefinition Name="SearchResultsRow" Height="0"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Menu Name="MainMenu" Grid.Row="0" Foreground="#BDBDBD" FontSize="16">
@@ -22,10 +33,32 @@
 
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox Width="300" BorderBrush="#BDBDBD" Foreground="#BDBDBD" FontSize="30" materialDesign:HintAssist.Hint="Введіть вік дитини"/>
-                <Button Content="Пошук" Margin="20,0,0,0" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
-                        FontSize="22" Height="45" Width="130" FontWeight="Normal"/>
+                <TextBlock Name="SearchResultsTextBlock" Foreground="#BDBDBD" FontSize="30" Text="Результати пошуку" Margin="0,0,20,0" Visibility="Collapsed"/>
+                <TextBox Name="AgeTextBox" Width="300" BorderBrush="#BDBDBD" Foreground="#BDBDBD" FontSize="30" materialDesign:HintAssist.Hint="Введіть вік дитини"/>
+                <Button Name="Search" Content="Пошук" Margin="20,0,0,0" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
+                        FontSize="22" Height="45" Width="130" FontWeight="Normal" Click="Search_Click"/>
             </StackPanel>
         </Grid>
+
+        <Border Grid.Row="2" BorderBrush="#BDBDBD" BorderThickness="2" CornerRadius="8" Margin="20,0,20,20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#BDBDBD" BorderThickness="0,0,0,2">
+                    <TextBlock Grid.Row="0" Text="Номер мішка (кількість іграшок)" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Foreground="#BDBDBD" FontSize="25" Margin="10"/>
+                </Border>
+
+                <ScrollViewer Grid.Row="1" Margin="0,5,0,5">
+                    <StackPanel Name="SearchResults"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <Button Grid.Row="3" Name="Save" Content="Зберегти результати" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
+                FontSize="22" Height="45" FontWeight="Normal" HorizontalAlignment="Center" Margin="20" Visibility="Collapsed" Click="Save_Click"/>
     </Grid>
 </Window>
