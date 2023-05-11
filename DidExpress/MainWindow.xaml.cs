@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace DidExpress {
     public partial class MainWindow : Window {
@@ -63,6 +64,14 @@ namespace DidExpress {
                 MessageBox.Show("Невірно введений вік!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else {
+                var age = Convert.ToInt32(AgeTextBox.Text);
+                var toys = SelectToy.SelectByAge(age);
+
+                if (toys.Count == 0) {
+                    MessageBox.Show("Іграшок для заданого віку не знайдено", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 SearchResultsTextBlock.Visibility = Visibility.Visible;
 
                 Save.Visibility = Visibility.Visible;
@@ -73,9 +82,12 @@ namespace DidExpress {
 
                 SearchResults.Children.Clear();
 
-                for (int i = 1; i <= Convert.ToInt32(AgeTextBox.Text); i++) {
+                var groupedToys = toys.Where(t => t.Age == age)
+                                      .GroupBy(t => t.Bag);
+
+                foreach (var group in groupedToys) {
                     var textBlock = new TextBlock() { Style = (Style)FindResource("SearchResultTextBlock") };
-                    textBlock.Text = "Text " + i.ToString();
+                    textBlock.Text = $"Мішок {group.Key} ({group.Count()})";
 
                     SearchResults.Children.Add(textBlock);
                 }

@@ -25,22 +25,28 @@ namespace DidExpress.View.Windows {
         string Mode = "Bags";
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
-            for (int i = 1; i <= 5; i++) {
-                AddBagToList(i);
+            var bags = DataAccess.LoadBags();
+
+            foreach (var bag in bags) {
+                AddBagToList(bag);
             }
         }
 
         private void DeleteBag_Click(object sender, RoutedEventArgs e) {
             FindParent<Grid>(sender as Button).Visibility = Visibility.Collapsed;
+
+            int bag = Convert.ToInt32((sender as Button).Name.Replace("DeleteBag", ""));
+            EditDB.DeleteBag(bag);
         }
 
         private void EditBag_Click(object sender, RoutedEventArgs e) {
-            ListHeader.Text = $"Список іграшок в мішку {(sender as Button).Name.Replace("Edit", "")}";
+            int bag = Convert.ToInt32((sender as Button).Name.Replace("EditBag", ""));
+            ListHeader.Text = $"Список іграшок в мішку {bag}";
 
             List.Children.Clear();
-
-            for (int i = 1; i <= 5; i++) {
-                AddToyToList(i.ToString());
+            
+            foreach (var toy in DataAccess.LoadToysFromBag(bag)) {
+                AddToyToList(toy.Name, toy.Id);
 
                 Mode = "Toys";
             }
@@ -48,6 +54,9 @@ namespace DidExpress.View.Windows {
 
         private void DeleteToy_Click(object sender, RoutedEventArgs e) {
             FindParent<Grid>(sender as Button).Visibility = Visibility.Collapsed;
+
+            int id = Convert.ToInt32((sender as Button).Name.Replace("DeleteToy", ""));
+            EditDB.DeleteToy(id);
         }
 
         private void EditToy_Click(object sender, RoutedEventArgs e) {
@@ -55,12 +64,12 @@ namespace DidExpress.View.Windows {
         }
 
         private void Add_Click(object sender, RoutedEventArgs e) {
-            if (Mode == "Bags") {
-                AddBagToList(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
-            }
-            else {
-                AddToyToList(DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
-            }
+            //if (Mode == "Bags") {
+            //    AddBagToList(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
+            //}
+            //else {
+            //    AddToyToList(DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
+            //}
         }
 
         void AddBagToList(int i) {
@@ -96,17 +105,15 @@ namespace DidExpress.View.Windows {
             List.Children.Add(grid);
         }
 
-        void AddToyToList(string name) {
-            int i = Convert.ToInt32(name);
-
+        void AddToyToList(string name, int id) {
             Grid grid = new Grid();
 
             var textBlock = new TextBlock() { Style = (Style)FindResource("ListTextBlock") };
-            textBlock.Text = "Іграшка " + i.ToString();
+            textBlock.Text = "Іграшка " + name;
 
             var deleteButton = new Button() { Style = (Style)FindResource("ButtonStyle") };
             deleteButton.Margin = new Thickness(10, 5, 10, 5);
-            deleteButton.Name = $"DeleteToy{i}";
+            deleteButton.Name = $"DeleteToy{id}";
             deleteButton.Click += DeleteToy_Click;
 
             var deleteIcon = new PackIcon() { Style = (Style)FindResource("PackIconStyle") };
@@ -116,7 +123,7 @@ namespace DidExpress.View.Windows {
 
             Button editButton = new Button() { Style = (Style)FindResource("ButtonStyle") };
             editButton.Margin = new Thickness(10, 5, 60, 5);
-            editButton.Name = $"EditToy{i}";
+            editButton.Name = $"EditToy{id}";
             editButton.Click += EditToy_Click;
 
             PackIcon editIcon = new PackIcon() { Style = (Style)FindResource("PackIconStyle") };
