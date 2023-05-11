@@ -51,7 +51,9 @@ namespace DidExpress {
         }
 
         private void EditMenuItem_Click(object sender, RoutedEventArgs e) {
-
+            var editWindow = new EditWindow();
+            editWindow.Owner = this;
+            editWindow.ShowDialog();
         }
 
         private void Search_Click(object sender, RoutedEventArgs e) {

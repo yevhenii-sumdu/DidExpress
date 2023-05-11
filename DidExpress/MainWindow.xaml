@@ -59,6 +59,6 @@
         </Border>
 
         <Button Grid.Row="3" Name="Save" Content="Зберегти результати" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
-                FontSize="22" Height="45" FontWeight="Normal" HorizontalAlignment="Center" Margin="20" Visibility="Collapsed" Click="Save_Click"/>
+                FontSize="22" Height="45" FontWeight="Normal" HorizontalAlignment="Center" Margin="20,0,20,20" Visibility="Collapsed" Click="Save_Click"/>
     </Grid>
 </Window>
