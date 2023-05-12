@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
 
 namespace DidExpress {
     public partial class MainWindow : Window {
@@ -37,8 +38,11 @@ namespace DidExpress {
             var res = CurrentUser.Login(login, password);
 
             if (res) {
-                AuthMenuItem.Visibility = Visibility.Collapsed;
-                EditMenuItem.Visibility = Visibility.Visible;
+                if (CurrentUser.EditAccess) {
+                    EditMenuItem.Visibility = Visibility.Visible;
+                }
+
+                AuthMenuItem.Visibility = Visibility.Collapsed;             
                 UserInfoMenuItem.Visibility = Visibility.Visible;
 
                 return true;
@@ -48,7 +52,11 @@ namespace DidExpress {
         }
 
         private void UserInfoMenuItem_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show($"Користувач: {CurrentUser.UserName}\nЛогін: {CurrentUser.UserLogin}", "Інформація про користувача", MessageBoxButton.OK, MessageBoxImage.Information); ;
+            string name = CurrentUser.UserName;
+            string login = CurrentUser.UserLogin;
+            string editAccess = CurrentUser.EditAccess ? "Є" : "Немає";
+
+            MessageBox.Show($"Користувач: {name}\nЛогін: {login}\nДоступ до редагування: {editAccess}", "Інформація про користувача", MessageBoxButton.OK, MessageBoxImage.Information); ;
         }
 
         private void EditMenuItem_Click(object sender, RoutedEventArgs e) {

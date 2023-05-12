@@ -1,0 +1,56 @@
+﻿<Window x:Class="DidExpress.View.Windows.NewToyWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DidExpress.View.Windows"
+        mc:Ignorable="d"
+        Title="NewToyWindow" Height="280" Width="400" ResizeMode="NoResize">
+    <Grid Background="#1E1E25">
+        <Border Padding="15,15,15,0">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="#BDBDBD"/>
+                        <Setter Property="FontSize" Value="22"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                        <Setter Property="Foreground" Value="#BDBDBD"/>
+                        <Setter Property="FontSize" Value="22"/>
+                        <Setter Property="BorderBrush" Value="#BDBDBD"/>
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Ім'я"/>
+                <TextBox Name="ToyName" Grid.Row="0" Grid.Column="1"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Колір"/>
+                <TextBox Name="ToyColor" Grid.Row="1" Grid.Column="1"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Вік"/>
+                <TextBox Name="ToyAge" Grid.Row="2" Grid.Column="1"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Мішок"/>
+                <TextBox Name="ToyBag" Grid.Row="3" Grid.Column="1"/>
+
+                <Button Grid.Row="4" Grid.Column="1" Content="Додати" Background="#636363" Height="45" Margin="10"
+                        BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8" FontSize="20" FontWeight="Normal"
+                        Click="ToyAdd_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

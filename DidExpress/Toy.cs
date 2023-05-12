@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DidExpress {
-    class Toy {
+    public class Toy {
         public int Id { get; }
         public string Name { get; set; }
         public string Color { get; }

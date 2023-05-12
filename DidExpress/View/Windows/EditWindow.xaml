@@ -25,12 +25,14 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
+        
         <Style TargetType="TextBlock" x:Key="ListTextBlock">
             <Setter Property="Foreground" Value="#BDBDBD"/>
             <Setter Property="Margin" Value="10,5,10,5"/>
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
+
         <Style TargetType="materialDesign:PackIcon" x:Key="PackIconStyle">
             <Setter Property="Foreground" Value="#BDBDBD"/>
             <Setter Property="Width" Value="35"/>
@@ -40,7 +42,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Background="#2E2E2E">
+    <Grid Background="#212128">
         <Border BorderBrush="#BDBDBD" BorderThickness="2" CornerRadius="8" Margin="20">
             <Grid>
                 <Grid.RowDefinitions>
@@ -53,8 +55,12 @@
                         <TextBlock Name="ListHeader" Text="Список мішків" HorizontalAlignment="Left" VerticalAlignment="Center"
                                    Foreground="#BDBDBD" FontSize="25" Margin="10"/>
 
-                        <Button Name="Add" Style="{StaticResource ButtonStyle}" Margin="0,0,5,0" Click="Add_Click">
+                        <Button Name="Add" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0" Click="Add_Click" Visibility="Hidden">
                             <materialDesign:PackIcon Kind="Plus" Style="{StaticResource PackIconStyle}"/>
+                        </Button>
+
+                        <Button Name="Return" Style="{StaticResource ButtonStyle}" Margin="0,0,60,0" Click="Return_Click" Visibility="Hidden">
+                            <materialDesign:PackIcon Kind="ArrowLeft" Style="{StaticResource PackIconStyle}"/>
                         </Button>
                     </Grid>
                 </Border>

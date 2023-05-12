@@ -1,6 +1,7 @@
 ﻿using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,14 +16,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace DidExpress.View.Windows {
     public partial class EditWindow : Window {
         public EditWindow() {
             InitializeComponent();
         }
-
-        string Mode = "Bags";
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             var bags = DataAccess.LoadBags();
@@ -39,17 +39,22 @@ namespace DidExpress.View.Windows {
             EditDB.DeleteBag(bag);
         }
 
+        public int OpenedBag;
+
         private void EditBag_Click(object sender, RoutedEventArgs e) {
             int bag = Convert.ToInt32((sender as Button).Name.Replace("EditBag", ""));
             ListHeader.Text = $"Список іграшок в мішку {bag}";
+
+            OpenedBag = bag;
 
             List.Children.Clear();
             
             foreach (var toy in DataAccess.LoadToysFromBag(bag)) {
                 AddToyToList(toy.Name, toy.Id);
-
-                Mode = "Toys";
             }
+
+            Add.Visibility = Visibility.Visible;
+            Return.Visibility = Visibility.Visible;
         }
 
         private void DeleteToy_Click(object sender, RoutedEventArgs e) {
@@ -59,17 +64,42 @@ namespace DidExpress.View.Windows {
             EditDB.DeleteToy(id);
         }
 
+        public Toy EditedToy;
+        public Grid EditedToyGrid;
+
         private void EditToy_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show($"Editing toy {(sender as Button).Name.Replace("Edit", "")}");
+            EditedToyGrid = FindParent<Grid>(sender as Button);
+            var editToyWindow = new EditToyWindow();
+            editToyWindow.Owner = this;
+
+            EditedToy = DataAccess.GetToyById(Convert.ToInt32((sender as Button).Name.Replace("EditToy", "")));
+            editToyWindow.ToyName.Text = EditedToy.Name;
+            editToyWindow.ToyColor.Text = EditedToy.Color;
+            editToyWindow.ToyAge.Text = EditedToy.Age.ToString();
+            editToyWindow.ToyBag.Text = EditedToy.Bag.ToString();
+
+            editToyWindow.ShowDialog();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e) {
-            //if (Mode == "Bags") {
-            //    AddBagToList(Convert.ToInt32(DateTimeOffset.Now.ToUnixTimeSeconds()));
-            //}
-            //else {
-            //    AddToyToList(DateTimeOffset.Now.ToUnixTimeSeconds().ToString());
-            //}
+            var NtWindow = new NewToyWindow();
+            NtWindow.Owner = this;
+            NtWindow.ShowDialog();
+        }
+
+        private void Return_Click(object sender, RoutedEventArgs e) {
+            ListHeader.Text = "Список мішків";
+
+            List.Children.Clear();
+
+            var bags = DataAccess.LoadBags();
+
+            foreach (var bag in bags) {
+                AddBagToList(bag);
+            }
+
+            Add.Visibility = Visibility.Hidden;
+            Return.Visibility = Visibility.Hidden;
         }
 
         void AddBagToList(int i) {
@@ -105,7 +135,7 @@ namespace DidExpress.View.Windows {
             List.Children.Add(grid);
         }
 
-        void AddToyToList(string name, int id) {
+        public void AddToyToList(string name, int id) {
             Grid grid = new Grid();
 
             var textBlock = new TextBlock() { Style = (Style)FindResource("ListTextBlock") };

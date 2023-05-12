@@ -64,5 +64,32 @@ namespace DidExpress {
 
             return res;
         }
+
+        public static Toy GetToyById(int id) {
+            MySqlConnection conn = new MySqlConnection(_connStr);
+
+            Toy res = null;
+
+            try {
+                conn.Open();
+
+                string sql = $"SELECT * FROM Toys WHERE id = {id}";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read()) {
+                    res = new Toy(Convert.ToInt32(rdr[0]), rdr[1].ToString(), rdr[2].ToString(), Convert.ToInt32(rdr[3]), Convert.ToInt32(rdr[4]));
+                }
+
+                rdr.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+            }
+
+            conn.Close();
+
+            return res;
+        }
     }
 }

@@ -8,8 +8,8 @@
         mc:Ignorable="d"
         Title="AuthWindow" Height="600" Width="600"
         MinHeight="400" MinWidth="400">
-    
-    <Grid Background="#2E2E2E">
+
+    <Grid Background="#212128">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="70*"/>

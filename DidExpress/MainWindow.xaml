@@ -16,8 +16,8 @@
             <Setter Property="FontSize" Value="25"/>
         </Style>
     </Window.Resources>
-    
-    <Grid Background="#2E2E2E">
+
+    <Grid Background="#212128">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Name="SearchRow"/>
@@ -28,7 +28,7 @@
         <Menu Name="MainMenu" Grid.Row="0" Foreground="#BDBDBD" FontSize="16">
             <MenuItem Name="AuthMenuItem" Header="Авторизація" Height="30" Click="AuthMenuItem_Click"/>
             <MenuItem Name="UserInfoMenuItem" Header="Користувач" Height="30" Visibility="Collapsed" Click="UserInfoMenuItem_Click"/>
-            <MenuItem Name="EditMenuItem" Header="Редагування" Height="30" Visibility="Visible" Click="EditMenuItem_Click"/>
+            <MenuItem Name="EditMenuItem" Header="Редагування" Height="30" Visibility="Collapsed" Click="EditMenuItem_Click"/>
         </Menu>
 
         <Grid Grid.Row="1">
