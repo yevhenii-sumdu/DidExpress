@@ -55,7 +55,7 @@
                         <TextBlock Name="ListHeader" Text="Список мішків" HorizontalAlignment="Left" VerticalAlignment="Center"
                                    Foreground="#BDBDBD" FontSize="25" Margin="10"/>
 
-                        <Button Name="Add" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0" Click="Add_Click" Visibility="Hidden">
+                        <Button Name="Add" Style="{StaticResource ButtonStyle}" Margin="0,0,10,0" Click="Add_Click">
                             <materialDesign:PackIcon Kind="Plus" Style="{StaticResource PackIconStyle}"/>
                         </Button>
 

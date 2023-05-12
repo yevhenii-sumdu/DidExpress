@@ -39,7 +39,7 @@ namespace DidExpress.View.Windows {
             EditDB.DeleteBag(bag);
         }
 
-        public int OpenedBag;
+        public int? OpenedBag = null;
 
         private void EditBag_Click(object sender, RoutedEventArgs e) {
             int bag = Convert.ToInt32((sender as Button).Name.Replace("EditBag", ""));
@@ -87,7 +87,7 @@ namespace DidExpress.View.Windows {
             NtWindow.ShowDialog();
         }
 
-        private void Return_Click(object sender, RoutedEventArgs e) {
+        public void Return_Click(object sender, RoutedEventArgs e) {
             ListHeader.Text = "Список мішків";
 
             List.Children.Clear();
@@ -98,8 +98,9 @@ namespace DidExpress.View.Windows {
                 AddBagToList(bag);
             }
 
-            Add.Visibility = Visibility.Hidden;
             Return.Visibility = Visibility.Hidden;
+
+            OpenedBag = null;
         }
 
         void AddBagToList(int i) {

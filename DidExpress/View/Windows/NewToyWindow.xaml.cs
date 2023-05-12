@@ -34,7 +34,10 @@ namespace DidExpress.View.Windows {
 
                 var win = (Owner as EditWindow);
 
-                if (win.OpenedBag == Convert.ToInt32(ToyBag.Text)) {
+                if (win.OpenedBag == null) {
+                    win.Return_Click(null, null);
+                }
+                else if (win.OpenedBag == Convert.ToInt32(ToyBag.Text)) {
                     win.AddToyToList(name, id);
                 }
 
