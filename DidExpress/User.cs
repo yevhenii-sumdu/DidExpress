@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace DidExpress {
     public class User {
-        static string _connStr = "server=localhost;user=user;database=didexpress;port=3306;password=pass";
+        private string _connStr = "server=localhost;user=user;database=didexpress;port=3306;password=pass";
         public string UserName { get; private set;  }
         public string UserLogin { get; private set; }
         public bool EditAccess { get; private set; }

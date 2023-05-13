@@ -20,7 +20,7 @@ namespace DidExpress.View.Windows {
 
         private void Login_Click(object sender, RoutedEventArgs e) {
             if ((Owner as MainWindow).Login_Click(Login.Text, Password.Password)) {
-                this.Close();
+                Close();
             }
             else {
                 MessageBox.Show("Невірний логін або пароль!", "Помилка авторизації", MessageBoxButton.OK, MessageBoxImage.Error);

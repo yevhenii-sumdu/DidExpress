@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DidExpress {
     public class Toy {
         public int Id { get; }
-        public string Name { get; set; }
+        public string Name { get; }
         public string Color { get; }
         public int Age { get; set; }
         public int Bag { get; set; }

@@ -66,9 +66,7 @@ namespace DidExpress {
         }
 
         private void Search_Click(object sender, RoutedEventArgs e) {
-            var regex = new Regex("[0-9]+");
-        
-            if (!regex.IsMatch(AgeTextBox.Text)) {
+            if (!int.TryParse(AgeTextBox.Text, out _)) {
                 MessageBox.Show("Невірно введений вік!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else {
