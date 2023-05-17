@@ -30,7 +30,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
@@ -57,7 +57,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
@@ -84,7 +84,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();

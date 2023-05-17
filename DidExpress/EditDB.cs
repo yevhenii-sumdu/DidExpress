@@ -34,7 +34,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
@@ -53,7 +53,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
@@ -70,7 +70,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
@@ -87,7 +87,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             conn.Close();
