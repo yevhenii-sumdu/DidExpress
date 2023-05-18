@@ -21,6 +21,8 @@ namespace DidExpress {
     public partial class MainWindow : Window {
 
         public User CurrentUser;
+        Dictionary<int, int> SearchResultsDict = null;
+        int SearchResultsAge;
 
         public MainWindow() {
             InitializeComponent();
@@ -91,9 +93,14 @@ namespace DidExpress {
                 var groupedToys = toys.Where(t => t.Age == age)
                                       .GroupBy(t => t.Bag);
 
+                SearchResultsAge = age;
+                SearchResultsDict = new Dictionary<int, int>();
+
                 foreach (var group in groupedToys) {
                     var textBlock = new TextBlock() { Style = (Style)FindResource("SearchResultTextBlock") };
                     textBlock.Text = $"Мішок {group.Key} ({group.Count()})";
+
+                    SearchResultsDict[group.Key] = group.Count();
 
                     SearchResults.Children.Add(textBlock);
                 }
@@ -101,7 +108,16 @@ namespace DidExpress {
         }
 
         private void Save_Click(object sender, RoutedEventArgs e) {
+            if (SearchResultsDict != null) {
+                string res = WordWriter.WriteToFile(SearchResultsAge, SearchResultsDict);
 
+                if (res != null) {
+                    MessageBox.Show($"Результати пошуку збережено до файлу:\n {res}", "Файл збережено", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else {
+                    MessageBox.Show("Під час запису результатів пошуку до файлу виникла помилка", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }
