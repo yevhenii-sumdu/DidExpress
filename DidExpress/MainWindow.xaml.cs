@@ -46,6 +46,7 @@ namespace DidExpress {
 
                 AuthMenuItem.Visibility = Visibility.Collapsed;             
                 UserInfoMenuItem.Visibility = Visibility.Visible;
+                ExitMenuItem.Visibility = Visibility.Visible;
 
                 return true;
             }
@@ -65,6 +66,15 @@ namespace DidExpress {
             var editWindow = new EditWindow();
             editWindow.Owner = this;
             editWindow.ShowDialog();
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e) {
+            CurrentUser = new User();
+
+            AuthMenuItem.Visibility = Visibility.Visible;
+            EditMenuItem.Visibility = Visibility.Collapsed;
+            UserInfoMenuItem.Visibility = Visibility.Collapsed;
+            ExitMenuItem.Visibility = Visibility.Collapsed;
         }
 
         private void Search_Click(object sender, RoutedEventArgs e) {
@@ -117,6 +127,12 @@ namespace DidExpress {
                 else {
                     MessageBox.Show("Під час запису результатів пошуку до файлу виникла помилка", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void AgeTextBox_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                Search_Click(null, null);
             }
         }
     }

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress.View.Windows"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="600" Width="600"
+        Title="Авторизація" Height="600" Width="600"
         MinHeight="400" MinWidth="400">
 
     <Grid Background="#212128">

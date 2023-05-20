@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress.View.Windows"
         mc:Ignorable="d"
-        Title="EditWindow" Height="450" Width="800"
+        Title="Редагування" Height="450" Width="800"
+        MinWidth="800" MinHeight="400"
         
         Loaded="Window_Loaded">
 

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress.View.Windows"
         mc:Ignorable="d"
-        Title="NewToyWindow" Height="280" Width="400" ResizeMode="NoResize">
+        Title="Додавання Іграшки" Height="280" Width="400" ResizeMode="NoResize">
     <Grid Background="#1E1E25">
         <Border Padding="15,15,15,0">
             <Grid>

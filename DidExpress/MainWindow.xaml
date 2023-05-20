@@ -27,14 +27,15 @@
 
         <Menu Name="MainMenu" Grid.Row="0" Foreground="#BDBDBD" FontSize="16">
             <MenuItem Name="AuthMenuItem" Header="Авторизація" Height="30" Click="AuthMenuItem_Click"/>
-            <MenuItem Name="UserInfoMenuItem" Header="Користувач" Height="30" Visibility="Collapsed" Click="UserInfoMenuItem_Click"/>
             <MenuItem Name="EditMenuItem" Header="Редагування" Height="30" Visibility="Collapsed" Click="EditMenuItem_Click"/>
+            <MenuItem Name="UserInfoMenuItem" Header="Користувач" Height="30" Visibility="Collapsed" Click="UserInfoMenuItem_Click"/>
+            <MenuItem Name="ExitMenuItem" Header="Вихід" Height="30" Visibility="Collapsed" Click="ExitMenuItem_Click"/>
         </Menu>
 
         <Grid Grid.Row="1">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Name="SearchResultsTextBlock" Foreground="#BDBDBD" FontSize="30" Text="Результати пошуку" Margin="0,0,20,0" Visibility="Collapsed"/>
-                <TextBox Name="AgeTextBox" Width="300" BorderBrush="#BDBDBD" Foreground="#BDBDBD" FontSize="30" materialDesign:HintAssist.Hint="Введіть вік дитини"/>
+                <TextBox Name="AgeTextBox" Width="300" BorderBrush="#BDBDBD" Foreground="#BDBDBD" FontSize="30" materialDesign:HintAssist.Hint="Введіть вік дитини" KeyDown="AgeTextBox_KeyDown"/>
                 <Button Name="Search" Content="Пошук" Margin="20,0,0,0" Background="#636363" BorderThickness="0" materialDesign:ButtonAssist.CornerRadius="8"
                         FontSize="22" Height="45" Width="130" FontWeight="Normal" Click="Search_Click"/>
             </StackPanel>

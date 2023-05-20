@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DidExpress.View.Windows"
         mc:Ignorable="d"
-        Title="EditToyWindow" Height="280" Width="400" ResizeMode="NoResize"
+        Title="Редагування Іграшки" Height="280" Width="400" ResizeMode="NoResize"
         Loaded="Window_Loaded">
     <Grid Background="#1E1E25">
         <Border Padding="15,15,15,0">

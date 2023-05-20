@@ -23,6 +23,8 @@ namespace DidExpress.View.Windows {
                 Close();
             }
             else {
+                Login.BorderBrush = new SolidColorBrush(Colors.IndianRed);
+                Password.BorderBrush = new SolidColorBrush(Colors.IndianRed);
                 MessageBox.Show("Невірний логін або пароль!", "Помилка авторизації", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
