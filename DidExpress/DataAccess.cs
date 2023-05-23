@@ -8,7 +8,7 @@ using System.Windows;
 using static DidExpress.Utils;
 
 namespace DidExpress {
-    class DataAccess {
+    public class DataAccess {
         static string _connStr = DatabaseSettings.ConnectionString;
 
         public static List<int> LoadBags() {          
