@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
+using static DidExpress.Utils;
 
 namespace DidExpress {
     class EditDB {
-        static string _connStr = "server=localhost;user=user;database=didexpress;port=3306;password=pass";
+        static string _connStr = DatabaseSettings.ConnectionString;
 
         public static int AddToy(Toy newToy) {
             int id = 0;
@@ -34,7 +34,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка підключення до сервера");
             }
 
             conn.Close();
@@ -53,7 +53,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка підключення до сервера");
             }
 
             conn.Close();
@@ -70,7 +70,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка підключення до сервера");
             }
 
             conn.Close();
@@ -87,7 +87,7 @@ namespace DidExpress {
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка підключення до сервера");
             }
 
             conn.Close();

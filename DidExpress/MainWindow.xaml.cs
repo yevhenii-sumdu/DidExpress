@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
+using static DidExpress.Utils;
 
 namespace DidExpress {
     public partial class MainWindow : Window {
@@ -79,14 +80,14 @@ namespace DidExpress {
 
         private void Search_Click(object sender, RoutedEventArgs e) {
             if (!int.TryParse(AgeTextBox.Text, out _)) {
-                MessageBox.Show("Невірно введений вік!", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Невірно введений вік!");
             }
             else {
                 var age = Convert.ToInt32(AgeTextBox.Text);
                 var toys = SelectToy.SelectByAge(age);
 
                 if (toys.Count == 0) {
-                    MessageBox.Show("Іграшок для заданого віку не знайдено", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ShowError("Іграшок для заданого віку не знайдено");
                     return;
                 }
 
@@ -125,7 +126,7 @@ namespace DidExpress {
                     MessageBox.Show($"Результати пошуку збережено до файлу:\n {res}", "Файл збережено", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else {
-                    MessageBox.Show("Під час запису результатів пошуку до файлу виникла помилка", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ShowError("Під час запису результатів пошуку до файлу виникла помилка");
                 }
             }
         }

@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using static DidExpress.Utils;
 
 namespace DidExpress {
     public class User {
-        private string _connStr = "server=localhost;user=user;database=didexpress;port=3306;password=pass";
+        private string _connStr = DatabaseSettings.ConnectionString;
         public string UserName { get; private set;  }
         public string UserLogin { get; private set; }
         public bool EditAccess { get; private set; }
@@ -35,7 +36,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка підключення до сервера", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка підключення до сервера");
             }
 
             conn.Close();

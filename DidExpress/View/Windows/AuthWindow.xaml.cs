@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static DidExpress.Utils;
 
 namespace DidExpress.View.Windows {
     public partial class AuthWindow : Window {
@@ -25,7 +26,7 @@ namespace DidExpress.View.Windows {
             else {
                 Login.BorderBrush = new SolidColorBrush(Colors.IndianRed);
                 Password.BorderBrush = new SolidColorBrush(Colors.IndianRed);
-                MessageBox.Show("Невірний логін або пароль!", "Помилка авторизації", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Невірний логін або пароль!", "Помилка авторизації");
             }
         }
     }

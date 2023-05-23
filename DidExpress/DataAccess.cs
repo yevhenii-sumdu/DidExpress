@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
+using static DidExpress.Utils;
 
 namespace DidExpress {
     class DataAccess {
-        static string _connStr = "server=localhost;user=user;database=didexpress;port=3306;password=pass";
+        static string _connStr = DatabaseSettings.ConnectionString;
 
         public static List<int> LoadBags() {          
             MySqlConnection conn = new MySqlConnection(_connStr);
@@ -30,7 +30,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка завантаження даних");
             }
 
             conn.Close();
@@ -57,7 +57,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка завантаження даних");
             }
 
             conn.Close();
@@ -84,7 +84,7 @@ namespace DidExpress {
                 rdr.Close();
             }
             catch (Exception ex) {
-                MessageBox.Show("Помилка завантаження даних", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Помилка завантаження даних");
             }
 
             conn.Close();

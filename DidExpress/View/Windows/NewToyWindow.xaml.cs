@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static DidExpress.Utils;
 
 namespace DidExpress.View.Windows {
     public partial class NewToyWindow : Window {
@@ -23,10 +24,10 @@ namespace DidExpress.View.Windows {
                 string.IsNullOrEmpty(ToyColor.Text) ||
                 string.IsNullOrEmpty(ToyAge.Text)) {
 
-                MessageBox.Show("Заповніть усі поля", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Заповніть усі поля");
             }
             else if (!int.TryParse(ToyAge.Text, out _)) {
-                MessageBox.Show("Невірно введені дані", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                ShowError("Невірно введені дані");
             }
             else {
                 int id = EditDB.AddToy(new Toy(0, ToyName.Text, ToyColor.Text, Convert.ToInt32(ToyAge.Text), Convert.ToInt32(ToyBag.Text)));
